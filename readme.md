@@ -14,6 +14,20 @@ To try the code sample, run BookScript.sql (make sure to read the comments in th
 
 For a real app the code in the Click event would be called in Form Shown but did it this way so those reading this can see how the code works.
 
+## Base code in form
+
+```csharp
+private void SetDataGridViewColumnHeaders()
+{
+    var columns = ColumnOperations.ColumnDetails(ConnectionString(), "Books");
+
+    foreach (var column in columns)
+    {
+        dataGridView1.Columns[column.Name]!.HeaderText = column.Description;
+    }
+}
+```
+
 # History
 
 Code was originally written for [TechNet article November 2018](https://social.technet.microsoft.com/wiki/contents/articles/52160.datagridview-setup-header-text-using-sql-server.aspx) in VB.NET while  the code in this repository is done with .NET Core 6 but with minor code changes will work in .NET Franework as in the TechNet article.
