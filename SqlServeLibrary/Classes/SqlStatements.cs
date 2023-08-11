@@ -1,7 +1,10 @@
-﻿namespace DataGridViewLibrary.Classes
+﻿namespace SqlServerLibrary.Classes
 {
     public class SqlStatements
     {
+        /// <summary>
+        /// Provides column names from the description property for each column in a specified table name
+        /// </summary>
         public static string DescriptionStatement =>
             """
             SELECT COLUMN_NAME AS ColumnName,

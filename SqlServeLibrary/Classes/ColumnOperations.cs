@@ -1,9 +1,8 @@
 ﻿using System.Data;
-using DataGridViewLibrary.Classes;
 using Microsoft.Data.SqlClient;
-using DataColumn = DataGridViewLibrary.Models.DataColumn;
+using DataColumn = SqlServerLibrary.Models.DataColumn;
 
-namespace DataGridViewLibrary;
+namespace SqlServerLibrary.Classes;
 
 public class ColumnOperations
 {
@@ -18,7 +17,7 @@ public class ColumnOperations
     /// </remarks>
     public static List<DataColumn> ColumnDetails(string connectionString, string tableName)
     {
-            
+
         List<DataColumn> list = new();
 
         using var cn = new SqlConnection(connectionString);

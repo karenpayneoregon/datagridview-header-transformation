@@ -3,7 +3,7 @@
 This repository shows how to use the Description properties of columns in a SQL-Server table for changing DataGridView Column HeaderText.
 
 
-![Screen Shot](DataGridViewLibrary/assets/screenShot.png)
+![Screen Shot](SqlServeLibrary/assets/screenShot.png)
 
 1. In a SQL-Server table, for columns to be used in a DataGridView set the description property
 1. In code we use the SELECT statement in the project `DataGridViewLibrary` to fetch column name and description
@@ -34,7 +34,14 @@ Code was originally written for [TechNet article November 2018](https://social.t
 
 As coded, one table is used, the same can work with joined tables as per [caveats](https://social.technet.microsoft.com/wiki/contents/articles/52160.datagridview-setup-header-text-using-sql-server.aspx#Caveats) in the TechNet article.
 
+**08/2023**
+
+- Renamed class project from DataGridViewLibrary to SqlServerLibrary.
+- Move to .NET Core 7
+
 
 # Connection string
 
 Are done using my NuGet package [ConfigurationLibrary](https://www.nuget.org/packages/ConfigurationLibrary/1.0.1?_src=template) which reads `appsettings.json`. Although this code uses a data provider the package also works with Entity Framework Core
+
+The alternate involves many packages for **Microsoft.Extensions.Configuration** while the above is easier.

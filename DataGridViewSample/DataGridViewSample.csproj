@@ -8,9 +8,6 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\DataGridViewLibrary\DataGridViewLibrary.csproj" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<None Update="appsettings.json">
@@ -23,6 +20,9 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\SqlServeLibrary\SqlServerLibrary.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Update="Properties\Resources.Designer.cs">

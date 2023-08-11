@@ -1,5 +1,5 @@
-using DataGridViewLibrary;
 using DataGridViewSample.Classes;
+using SqlServerLibrary.Classes;
 
 namespace DataGridViewSample
 {

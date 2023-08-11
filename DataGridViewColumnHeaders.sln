@@ -9,9 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		readme.md = readme.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataGridViewLibrary", "DataGridViewLibrary\DataGridViewLibrary.csproj", "{FBBE2077-03FC-470A-B42F-4CE66EDE9A88}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataGridViewSample", "DataGridViewSample\DataGridViewSample.csproj", "{580F62CD-8729-4CE7-8F22-F648BBC58E5C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServerLibrary", "SqlServeLibrary\SqlServerLibrary.csproj", "{982D97D5-445D-44DC-913A-0C21C56B6405}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FBBE2077-03FC-470A-B42F-4CE66EDE9A88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FBBE2077-03FC-470A-B42F-4CE66EDE9A88}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FBBE2077-03FC-470A-B42F-4CE66EDE9A88}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FBBE2077-03FC-470A-B42F-4CE66EDE9A88}.Release|Any CPU.Build.0 = Release|Any CPU
 		{580F62CD-8729-4CE7-8F22-F648BBC58E5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{580F62CD-8729-4CE7-8F22-F648BBC58E5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{580F62CD-8729-4CE7-8F22-F648BBC58E5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{580F62CD-8729-4CE7-8F22-F648BBC58E5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{982D97D5-445D-44DC-913A-0C21C56B6405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{982D97D5-445D-44DC-913A-0C21C56B6405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{982D97D5-445D-44DC-913A-0C21C56B6405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{982D97D5-445D-44DC-913A-0C21C56B6405}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

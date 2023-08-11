@@ -1,5 +1,5 @@
 ﻿
-namespace DataGridViewLibrary.Models
+namespace SqlServerLibrary.Models
 {
     public class DataColumn
     {

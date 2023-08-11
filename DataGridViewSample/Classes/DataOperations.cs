@@ -5,6 +5,10 @@ namespace DataGridViewSample.Classes;
 
 internal class DataOperations
 {
+    /// <summary>
+    /// Read Books table into a DataTable
+    /// </summary>
+    /// <returns>DataTable of Books</returns>
     public static DataTable Books()
     {
         using var cn = new SqlConnection(ConnectionString());
