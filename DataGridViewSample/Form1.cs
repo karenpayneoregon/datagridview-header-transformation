@@ -5,7 +5,7 @@ namespace DataGridViewSample
 {
     public partial class Form1 : Form
     {
-        private readonly BindingSource _bindingSource = new ();
+        private readonly BindingSource _bindingSource = new();
         public Form1()
         {
             InitializeComponent();
