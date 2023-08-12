@@ -7,14 +7,10 @@ namespace SqlServerLibrary.Classes;
 public class ColumnOperations
 {
     /// <summary>
-    /// Get column descriptions
+    /// Get column descriptions from a SQL-Server table
     /// </summary>
     /// <param name="connectionString">database connection string</param>
     /// <param name="tableName">existing table under database in connection string</param>
-    /// <remarks>
-    /// There is no exception handling, for those using this consider adding some form
-    /// of assertion via try/catch
-    /// </remarks>
     public static List<DataColumn> ColumnDetails(string connectionString, string tableName)
     {
 

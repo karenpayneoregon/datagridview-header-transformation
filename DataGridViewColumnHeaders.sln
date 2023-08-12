@@ -6,12 +6,15 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{673CF846-EC1E-4F8B-B68E-3CBCBBAA5A89}"
 	ProjectSection(SolutionItems) = preProject
 		BooksScript.sql = BooksScript.sql
+		North.sql = North.sql
 		readme.md = readme.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataGridViewSample", "DataGridViewSample\DataGridViewSample.csproj", "{580F62CD-8729-4CE7-8F22-F648BBC58E5C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServerLibrary", "SqlServeLibrary\SqlServerLibrary.csproj", "{982D97D5-445D-44DC-913A-0C21C56B6405}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Experiments", "Experiments\Experiments.csproj", "{2C1A78AE-557B-4C12-B19A-1E52454CB18A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +30,10 @@ Global
 		{982D97D5-445D-44DC-913A-0C21C56B6405}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{982D97D5-445D-44DC-913A-0C21C56B6405}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{982D97D5-445D-44DC-913A-0C21C56B6405}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C1A78AE-557B-4C12-B19A-1E52454CB18A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C1A78AE-557B-4C12-B19A-1E52454CB18A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C1A78AE-557B-4C12-B19A-1E52454CB18A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C1A78AE-557B-4C12-B19A-1E52454CB18A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
