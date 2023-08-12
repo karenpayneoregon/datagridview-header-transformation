@@ -11,8 +11,10 @@ internal partial class Program
         var services = Utilities.ConfigureServices();
         await using var serviceProvider = services.BuildServiceProvider();
 
-        serviceProvider.GetService<DataOperations>().GetColumnDescriptionsForBooks();
-        serviceProvider.GetService<DataOperations>().GetColumnDescriptionsForContacts();
+        AnsiConsole.MarkupLine("[cyan]Table descriptions from two different databases[/]");
+        serviceProvider.GetService<ColumnInformation>().ForBooks();
+        serviceProvider.GetService<ColumnInformation>().Contacts();
+        serviceProvider.GetService<ColumnInformation>().GetComputedColumns();
 
         ExitPrompt();
     }

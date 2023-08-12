@@ -35,7 +35,7 @@ public class Utilities
                 .GetSection(nameof(ConnectionStrings)));
 
 
-            services.AddTransient<DataOperations>();
+            services.AddTransient<ColumnInformation>();
         }
 
         var services = new ServiceCollection();

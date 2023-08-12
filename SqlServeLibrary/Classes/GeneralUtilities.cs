@@ -3,7 +3,7 @@ using Microsoft.Data.SqlClient;
 
 namespace SqlServerLibrary.Classes;
 
-public class DataHelpers
+public class GeneralUtilities
 {
     public static bool TablesArePopulated(string connectionString)
     {
@@ -52,4 +52,20 @@ public class DataHelpers
         return cmd.ExecuteScalar() != DBNull.Value;
 
     }
+
+    /// <summary>
+    /// Get InitialCatalog from a valid connection string
+    /// </summary>
+    /// <param name="connectionString">Valid constructed connection string</param>
+    /// <returns>InitialCatalog from <param name="connectionString">connectionString</param></returns>
+    public static string InitialCatalogFromConnectionString(string connectionString) 
+        => new SqlConnectionStringBuilder(connectionString).InitialCatalog;
+
+    /// <summary>
+    /// Get DataSource from a valid connection string
+    /// </summary>
+    /// <param name="connectionString">Valid constructed connection string</param>
+    /// <returns>DataSource from <param name="connectionString">connectionString</param></returns>
+    public static string DataSourceFromConnectionString(string connectionString)
+        => new SqlConnectionStringBuilder(connectionString).DataSource;
 }
