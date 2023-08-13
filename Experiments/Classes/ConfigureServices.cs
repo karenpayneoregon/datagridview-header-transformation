@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Experiments.Interfaces;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog.Events;
@@ -38,7 +39,7 @@ public class Utilities
                 .GetSection(nameof(ConnectionStrings)));
 
 
-            services.AddSingleton<ColumnInformation>();
+            services.AddScoped<ColumnInformation>();
             services.AddSingleton<ConstraintInformation>();
         }
 

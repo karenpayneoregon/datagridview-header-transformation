@@ -2,8 +2,8 @@
 
 public interface IColumnInformation
 {
-    void ForBooks();
-    void Contacts();
-    void GetComputedColumns();
-    void GetDateTimeInformation();
+    public void ForBooks();
+    public void Contacts();
+    public void GetComputedColumns();
+    public void GetDateTimeInformation();
 }

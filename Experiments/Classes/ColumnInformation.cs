@@ -27,7 +27,7 @@ public class ColumnInformation : IColumnInformation
     {
         ConsoleHelpers.PrintSampleName();
 
-        List<SqlServerLibrary.Models.ColumnDescriptions> columns = ColumnOperations.ColumnDetails(_options.BooksConnection, "Books");
+        List<ColumnDescriptions> columns = ColumnOperations.ColumnDetails(_options.BooksConnection, "Books");
         DisplayColumns(columns);
     }
 
