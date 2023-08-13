@@ -4,10 +4,13 @@ using Microsoft.Extensions.Logging;
 using Serilog.Events;
 using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
-using SeriLogThemesLibrary;
+
 
 namespace Experiments.Classes;
 
+/// <summary>
+/// Setup services
+/// </summary>
 public class Utilities
 {
     /// <summary>
@@ -35,7 +38,8 @@ public class Utilities
                 .GetSection(nameof(ConnectionStrings)));
 
 
-            services.AddTransient<ColumnInformation>();
+            services.AddSingleton<ColumnInformation>();
+            services.AddSingleton<ConstraintInformation>();
         }
 
         var services = new ServiceCollection();

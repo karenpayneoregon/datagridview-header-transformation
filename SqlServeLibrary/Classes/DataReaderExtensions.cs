@@ -2,7 +2,7 @@
 
 namespace SqlServerLibrary.Classes;
 
-public static class Extensions
+public static class DataReaderExtensions
 {
     /// <summary>
     /// Read column of type string assert for <see cref="DBNull"/>

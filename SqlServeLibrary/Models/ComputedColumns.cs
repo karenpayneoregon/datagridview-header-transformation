@@ -1,4 +1,7 @@
 ﻿namespace SqlServerLibrary.Models;
+/// <summary>
+/// For holding information for computed columns
+/// </summary>
 public class ComputedColumns
 {
     public string SchemaName { get; set; }

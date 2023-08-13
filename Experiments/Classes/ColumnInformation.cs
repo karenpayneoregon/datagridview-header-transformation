@@ -17,7 +17,7 @@ public class ColumnInformation
         _options = options?.Value;
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         
-        var test = GeneralUtilities.DataSourceFromConnectionString(_options.BooksConnection);
+        var test = GeneralUtilities.DataSourceFromConnectionString(_options!.BooksConnection);
     }
 
 

@@ -15,6 +15,7 @@ internal partial class Program
         serviceProvider.GetService<ColumnInformation>().ForBooks();
         serviceProvider.GetService<ColumnInformation>().Contacts();
         serviceProvider.GetService<ColumnInformation>().GetComputedColumns();
+        serviceProvider.GetService<ConstraintInformation>().GetTablesWithDeleteRuleForNorthWindDatabase();
 
         ExitPrompt();
     }

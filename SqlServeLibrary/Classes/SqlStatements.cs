@@ -1,5 +1,13 @@
 ﻿namespace SqlServerLibrary.Classes
 {
+    /// <summary>
+    /// A container for all SQL statements
+    /// </summary>
+    /// <remarks>
+    /// All statements are created in SSMS and pasted here.
+    /// As a rule of thumb its better to write statements in SSMS, validate they work
+    /// as expected than added them as done here.
+    /// </remarks>
     public class SqlStatements
     {
         /// <summary>
@@ -99,6 +107,60 @@
             ORDER BY SchemaName,
                      TableName,
                      c.column_id;
+            """;
+
+        /// <summary>
+        /// Determine if table exists in a data
+        /// </summary>
+        public static string TableExists =>
+            """
+            SELECT CASE
+                WHEN EXISTS
+                     (
+                         (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = @TableName)
+                     ) THEN
+                    1
+                ELSE
+                    0
+            END;
+            """;
+
+        /// <summary>
+        /// Determine if table exists in a data
+        /// </summary>
+        public static string TableConstraintsForDatabase =>
+            """
+            SELECT
+                PrimaryKeyTable = QUOTENAME(PK.CONSTRAINT_SCHEMA) + '.' + QUOTENAME(PK.TABLE_NAME),
+                ConstraintName = C.CONSTRAINT_NAME,
+                PrimaryKeyColumn = CCU.COLUMN_NAME,
+                ForeignKeyTable = QUOTENAME(FK.CONSTRAINT_SCHEMA) + '.' + QUOTENAME(FK.TABLE_NAME),
+                ForeignKeyColumn = CU.COLUMN_NAME,
+                UpdateRule = C.UPDATE_RULE,
+                DeleteRule = C.DELETE_RULE
+            FROM
+                INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS C 
+                INNER JOIN INFORMATION_SCHEMA.TABLE_CONSTRAINTS FK ON 
+                    C.CONSTRAINT_NAME = FK.CONSTRAINT_NAME AND
+                    C.CONSTRAINT_CATALOG = FK.CONSTRAINT_CATALOG AND
+                    C.CONSTRAINT_SCHEMA = FK.CONSTRAINT_SCHEMA
+                INNER JOIN INFORMATION_SCHEMA.TABLE_CONSTRAINTS PK ON 
+                    C.UNIQUE_CONSTRAINT_NAME = PK.CONSTRAINT_NAME AND
+                    C.UNIQUE_CONSTRAINT_CATALOG = PK.CONSTRAINT_CATALOG AND
+                    C.UNIQUE_CONSTRAINT_SCHEMA = PK.CONSTRAINT_SCHEMA
+                INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE CU ON 
+                    C.CONSTRAINT_NAME = CU.CONSTRAINT_NAME AND
+                    C.CONSTRAINT_CATALOG = CU.CONSTRAINT_CATALOG AND
+                    C.CONSTRAINT_SCHEMA = CU.CONSTRAINT_SCHEMA
+                INNER JOIN INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE CCU ON 
+                    PK.CONSTRAINT_NAME = CCU.CONSTRAINT_NAME AND
+                    PK.CONSTRAINT_CATALOG = CCU.CONSTRAINT_CATALOG AND
+                    PK.CONSTRAINT_SCHEMA = CCU.CONSTRAINT_SCHEMA
+            WHERE
+                FK.CONSTRAINT_TYPE = 'FOREIGN KEY'
+            ORDER BY
+                PK.TABLE_NAME, 
+                FK.TABLE_NAME
             """;
     }
 }
