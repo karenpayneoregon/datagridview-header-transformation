@@ -126,6 +126,34 @@
             """;
 
         /// <summary>
+        /// Get names of user stored procedures
+        /// </summary>
+        public static string GetUserStoredProcedureNames =>
+            """
+            SELECT [name]
+            FROM sys.procedures
+            WHERE [name] LIKE 'usp%' OR [name] LIKE 'usp_%';
+            """;
+
+        /// <summary>
+        /// Get all date time columns for tables in database
+        /// </summary>
+        public static string GetAllDateTimeColumnsInDatabase =>
+            """
+            SELECT SCHEMA_NAME(t.schema_id) + '.' + t.name AS [TableName],
+                   c.column_id "ColumnId",
+                   c.name AS "ColumnName",
+                   TYPE_NAME(c.user_type_id) AS DataType,
+                   c.scale AS "Scale"
+            FROM sys.columns c
+                JOIN sys.tables t
+                    ON t.object_id = c.object_id
+            WHERE TYPE_NAME(c.user_type_id) IN ( 'date', 'datetimeoffset', 'datetime2', 'smalldatetime', 'datetime', 'time' )
+            ORDER BY [TableName],
+                     c.column_id;
+            """;
+
+        /// <summary>
         /// Determine if table exists in a data
         /// </summary>
         public static string TableConstraintsForDatabase =>

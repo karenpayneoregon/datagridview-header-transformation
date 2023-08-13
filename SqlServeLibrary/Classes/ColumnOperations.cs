@@ -42,6 +42,34 @@ public class ColumnOperations
 
     }
 
+    public static List<DateTimeContainer> GetDateTimeColumns(string connectionString)
+    {
+        List<DateTimeContainer> list = new();
+
+        using var cn = new SqlConnection(connectionString);
+        var cmd = new SqlCommand { Connection = cn, CommandText = SqlStatements.GetAllDateTimeColumnsInDatabase };
+
+        cn.Open();
+
+        var reader = cmd.ExecuteReader();
+
+        if (!reader.HasRows) return list;
+        
+        while (reader.Read())
+        {
+            list.Add(new DateTimeContainer()
+            {
+                TableName = reader.GetString(0),
+                ColumnId = reader.GetInt32(1),
+                ColumnName = reader.GetString(2),
+                DataType = reader.GetString(3),
+                Scale = reader.GetByte(4)
+            });
+        }
+
+        return list;
+    }
+
     /// <summary>
     /// Get all table that have computed columns
     /// </summary>

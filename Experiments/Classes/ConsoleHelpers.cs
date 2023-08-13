@@ -6,7 +6,7 @@ namespace Experiments.Classes;
 /// <summary>
 /// Console helpers
 /// </summary>
-internal class Helpers
+internal class ConsoleHelpers
 {
     /// <summary>
     /// Used to display current method name
@@ -14,7 +14,7 @@ internal class Helpers
     /// <param name="methodName"></param>
     public static void PrintSampleName([CallerMemberName] string? methodName = null)
     {
-        AnsiConsole.MarkupLine($"[cyan]Sample:[/] [white]{methodName.SplitCamelCase()}[/]");
+        AnsiConsole.MarkupLine($"[white on blue]Sample:[/] [white]{methodName.SplitCamelCase()}[/]");
         Console.WriteLine();
     }
 }

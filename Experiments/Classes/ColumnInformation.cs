@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Experiments.Interfaces;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SqlServerLibrary.Classes;
+using SqlServerLibrary.Models;
 
 
 namespace Experiments.Classes;
@@ -8,7 +10,7 @@ namespace Experiments.Classes;
 /// <summary>
 /// Example for obtaining column descriptions from SQL-Server tables which are defined in design pane of a table in SSMS (SQL-Server Management Studio)
 /// </summary>
-public class ColumnInformation
+public class ColumnInformation : IColumnInformation
 {
     private readonly ConnectionStrings _options;
     private readonly ILogger<ColumnInformation> _logger;
@@ -23,7 +25,7 @@ public class ColumnInformation
 
     public void ForBooks()
     {
-        Helpers.PrintSampleName();
+        ConsoleHelpers.PrintSampleName();
 
         List<SqlServerLibrary.Models.ColumnDescriptions> columns = ColumnOperations.ColumnDetails(_options.BooksConnection, "Books");
         DisplayColumns(columns);
@@ -31,7 +33,7 @@ public class ColumnInformation
 
     public void Contacts()
     {
-        Helpers.PrintSampleName();
+        ConsoleHelpers.PrintSampleName();
 
         List<SqlServerLibrary.Models.ColumnDescriptions> columns = ColumnOperations.ColumnDetails(_options.NorthWindConnection, "Contacts");
         DisplayColumns(columns);
@@ -50,8 +52,8 @@ public class ColumnInformation
 
     public void GetComputedColumns()
     {
-        Helpers.PrintSampleName();
-        var results =ColumnOperations.GetComputedColumnsList(_options.ComputedConnection);
+        ConsoleHelpers.PrintSampleName();
+        List<ComputedColumns> results = ColumnOperations.GetComputedColumnsList(_options.ComputedConnection);
         if (results != null)
         {
             foreach (var column in results)
@@ -64,6 +66,22 @@ public class ColumnInformation
         {
             Console.WriteLine("No computed columns");
         }
+    }
+
+    public void GetDateTimeInformation()
+    {
+        Console.WriteLine();
+
+        ConsoleHelpers.PrintSampleName();
+        List<DateTimeContainer> results = ColumnOperations.GetDateTimeColumns(_options.NorthWindConnection);
+
+        foreach (var container in results)
+        {
+            Console.WriteLine(container);
+        }
+
+        Console.WriteLine();
+
     }
 
     private static Table CreateTable() =>

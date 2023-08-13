@@ -12,9 +12,14 @@ internal partial class Program
         await using var serviceProvider = services.BuildServiceProvider();
 
         AnsiConsole.MarkupLine("[cyan]Table descriptions from two different databases[/]");
+
         serviceProvider.GetService<ColumnInformation>().ForBooks();
         serviceProvider.GetService<ColumnInformation>().Contacts();
+
+        AnsiConsole.MarkupLine("[cyan]Misc helpers[/]");
+
         serviceProvider.GetService<ColumnInformation>().GetComputedColumns();
+        serviceProvider.GetService<ColumnInformation>().GetDateTimeInformation();
         serviceProvider.GetService<ConstraintInformation>().GetTablesWithDeleteRuleForNorthWindDatabase();
 
         ExitPrompt();

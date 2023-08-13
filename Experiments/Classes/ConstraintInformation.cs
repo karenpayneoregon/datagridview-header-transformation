@@ -3,9 +3,10 @@ using Microsoft.Extensions.Options;
 using SqlServerLibrary.Models;
 using SqlServerLibrary.Classes;
 using static SqlServerLibrary.Classes.GeneralUtilities;
+using Experiments.Interfaces;
 
 namespace Experiments.Classes;
-public class ConstraintInformation
+public class ConstraintInformation : IConstraintInformation
 {
     private readonly ConnectionStrings _options;
     private readonly ILogger<ConstraintInformation> _logger;
@@ -21,7 +22,7 @@ public class ConstraintInformation
     /// </summary>
     public void GetTablesWithDeleteRuleForNorthWindDatabase()
     {
-        Helpers.PrintSampleName();
+        ConsoleHelpers.PrintSampleName();
         List<TableConstraints> list = ConstraintsOperations.GetAll(_options.NorthWindConnection);
         var deleteRule = list.Where(x => x.DeleteRule == "CASCADE").ToList();
         if (deleteRule.Count > 0)
