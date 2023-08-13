@@ -1,4 +1,8 @@
-# Change DataGridView column headers
+# SQL-Server/C# library
+
+
+
+## Change DataGridView column headers
 
 This repository shows how to use the Description properties of columns in a SQL-Server table for changing DataGridView Column HeaderText.
 
@@ -28,7 +32,7 @@ private void SetDataGridViewColumnHeaders()
 }
 ```
 
-# History
+## History
 
 Code was originally written for [TechNet article November 2018](https://social.technet.microsoft.com/wiki/contents/articles/52160.datagridview-setup-header-text-using-sql-server.aspx) in VB.NET while  the code in this repository is done with .NET Core 6 but with minor code changes will work in .NET Franework as in the TechNet article.
 
@@ -38,9 +42,69 @@ As coded, one table is used, the same can work with joined tables as per [caveat
 
 - Renamed class project from DataGridViewLibrary to SqlServerLibrary.
 - Move to .NET Core 7
+- Renamed solution
 
 
-# Connection string
+## Console project connection string
+
+Reads several connection string from appsettings.json
+
+appsettings.json
+
+```json
+{
+  "App": {
+    "TempDirectory": "Temp"
+  },
+
+  "ConnectionStrings": {
+    "NorthWindConnection": "Server=(localdb)\\MSSQLLocalDB;Database=NorthWind2022;Trusted_Connection=True",
+    "BooksConnection": "Server=(localdb)\\mssqllocaldb;Database=EF.BookCatalog1;Trusted_Connection=True",
+    "ComputedConnection": "Server=(localdb)\\mssqllocaldb;Database=ComputedSample2;Trusted_Connection=True"
+  },
+
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Information",
+      "Microsoft.Hosting.Lifetime": "Information",
+      "Microsoft.EntityFrameworkCore": "None"
+    }
+  }
+}
+```
+
+Code to read connection strings
+
+```csharp
+public static ServiceCollection ConfigureServices()
+{
+    static void ConfigureService(IServiceCollection services)
+    {
+        services.AddLogging(builder =>
+        {
+            builder.AddConsole();
+            builder.AddDebug();
+            builder.AddConfiguration(ConfigurationRoot().GetSection("Logging"));
+        });
+
+        services.Configure<ConnectionStrings>(ConfigurationRoot()
+            .GetSection(nameof(ConnectionStrings)));
+
+
+        services.AddSingleton<ColumnInformation>();
+        services.AddSingleton<ConstraintInformation>();
+    }
+
+    var services = new ServiceCollection();
+    ConfigureService(services);
+
+    return services;
+
+}
+```
+
+## DataGridView project connection string
 
 Are done using my NuGet package [ConfigurationLibrary](https://www.nuget.org/packages/ConfigurationLibrary/1.0.1?_src=template) which reads `appsettings.json`. Although this code uses a data provider the package also works with Entity Framework Core
 
