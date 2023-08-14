@@ -18,7 +18,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Experiments", "Experiments\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbPeekQueryLibrary", "DbLibrary\DbPeekQueryLibrary.csproj", "{2673F58A-3D0E-4979-9C0F-567B84EF1459}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClassProjects", "ClassProjects", "{BF19E489-808B-431B-8341-7D8C5BD62956}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{BF19E489-808B-431B-8341-7D8C5BD62956}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +45,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{982D97D5-445D-44DC-913A-0C21C56B6405} = {BF19E489-808B-431B-8341-7D8C5BD62956}
-		{2673F58A-3D0E-4979-9C0F-567B84EF1459} = {BF19E489-808B-431B-8341-7D8C5BD62956}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F4990E40-4BC1-4767-B4B4-3807C52E009D}

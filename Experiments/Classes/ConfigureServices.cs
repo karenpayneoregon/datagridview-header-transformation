@@ -43,9 +43,6 @@ public class Utilities
                 builder.AddConfiguration(ConfigurationRoot().GetSection("Logging"));
             });
 
-            services.Configure<ConnectionStrings>(ConfigurationRoot()
-                .GetSection(nameof(ConnectionStrings)));
-
             services.AddScoped<ConstraintsService>();
             services.AddScoped<ColumnsService>();
         }
@@ -57,6 +54,9 @@ public class Utilities
 
     }
 
+    /// <summary>
+    /// For setting up SeriLog if the reader desires to use SeriLog rather than AnsiConsole or Console
+    /// </summary>
     public static void SeriLogDevelopmentSetup()
     {
         Log.Logger = new LoggerConfiguration()
