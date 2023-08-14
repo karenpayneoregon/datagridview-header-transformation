@@ -1,6 +1,10 @@
 # SQL-Server/C# library
 
+## SqlServerLibraty
 
+## DbPeekQueryLibrary
+
+## SeriLog
 
 ## Change DataGridView column headers
 
@@ -43,6 +47,7 @@ As coded, one table is used, the same can work with joined tables as per [caveat
 - Renamed class project from DataGridViewLibrary to SqlServerLibrary.
 - Move to .NET Core 7
 - Renamed solution
+- Use of Dependency Injection
 
 
 ## Console project connection string

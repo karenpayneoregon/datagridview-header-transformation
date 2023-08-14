@@ -16,7 +16,6 @@ internal partial class Program
 
         AnsiConsole.MarkupLine("[cyan]Table descriptions from two different databases[/]");
 
-        //ColumnInformation columnInformation = serviceProvider.GetService<ColumnInformation>();
         ColumnsService columnsService = serviceProvider.GetService<ColumnsService>();
 
         List<ColumnDescriptions> booksList = columnsService.ForBooks(BooksConnection);
@@ -41,6 +40,8 @@ internal partial class Program
         ConstraintHelpers.GetTablesWithDeleteRuleForNorthWindDatabase(tableConstraintsList);
 
         DummyCommands.ShowCommandParameters();
+        AnsiConsole.MarkupLine("[cyan]Query logged with [/][yellow]SeriLog[/]");
+
 
         ExitPrompt();
     }

@@ -192,5 +192,38 @@
                 PK.TABLE_NAME, 
                 FK.TABLE_NAME
             """;
+
+        public static string GetCustomerForExamination =>
+            """
+            SELECT Cust.CustomerIdentifier,
+                   Cust.CompanyName,
+                   Cust.City,
+                   Cust.PostalCode,
+                   C.ContactId,
+                   CO.CountryIdentifier,
+                   CO.Name AS Country,
+                   Cust.Phone,
+                   Devices.PhoneTypeIdentifier,
+                   Devices.PhoneNumber,
+                   Cust.ContactTypeIdentifier,
+                   C.FirstName,
+                   C.LastName,
+                   CT.ContactTitle
+            FROM dbo.Customers AS Cust
+                INNER JOIN dbo.ContactType AS CT
+                    ON Cust.ContactTypeIdentifier = CT.ContactTypeIdentifier
+                INNER JOIN dbo.Countries AS CO
+                    ON Cust.CountryIdentifier = CO.CountryIdentifier
+                INNER JOIN dbo.Contacts AS C
+                    ON Cust.ContactId = C.ContactId
+                INNER JOIN dbo.ContactDevices AS Devices
+                    ON C.ContactId = Devices.ContactId
+            WHERE (
+                      Cust.CustomerIdentifier = @CustomerIdentifier
+                      AND Devices.PhoneTypeIdentifier = @PhoneType
+            		  AND Cust.ContactTypeIdentifier = @ContactType
+                  );
+            """;
     }
 }
+
