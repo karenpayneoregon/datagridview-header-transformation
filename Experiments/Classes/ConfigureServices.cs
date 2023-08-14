@@ -1,10 +1,10 @@
-﻿using Experiments.Interfaces;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog.Events;
 using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
+using SqlServerLibrary.Classes;
 
 
 namespace Experiments.Classes;
@@ -14,6 +14,14 @@ namespace Experiments.Classes;
 /// </summary>
 public class Utilities
 {
+
+    public static string NorthWindConnectionString 
+        => ConfigurationRoot().GetConnectionString(nameof(ConnectionStrings.NorthWindConnection));
+    public static string BooksConnection 
+        => ConfigurationRoot().GetConnectionString(nameof(ConnectionStrings.BooksConnection));
+    public static string ComputedConnection 
+        => ConfigurationRoot().GetConnectionString(nameof(ConnectionStrings.ComputedConnection));
+    
     /// <summary>
     /// Read sections from appsettings.json
     /// </summary>
@@ -38,9 +46,8 @@ public class Utilities
             services.Configure<ConnectionStrings>(ConfigurationRoot()
                 .GetSection(nameof(ConnectionStrings)));
 
-
-            services.AddScoped<ColumnInformation>();
-            services.AddSingleton<ConstraintInformation>();
+            services.AddScoped<ConstraintsService>();
+            services.AddScoped<ColumnsService>();
         }
 
         var services = new ServiceCollection();

@@ -32,7 +32,7 @@ namespace DataGridViewSample
         /// </summary>
         private void SetDataGridViewColumnHeaders()
         {
-            var columns = ColumnOperations.ColumnDetails(ConnectionString(), "Books");
+            var columns = ColumnService.ColumnDetails(ConnectionString(), "Books");
 
             foreach (var column in columns)
             {

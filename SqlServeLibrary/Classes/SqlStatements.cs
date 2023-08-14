@@ -33,7 +33,7 @@
             """;
 
         /// <summary>
-        /// Get default values for each column for tables
+        /// Get default values for each column for tables using a connection object
         /// </summary>
         public static string GetDefaultValuesInDatabase =>
             """
@@ -53,7 +53,7 @@
             """;
 
         /// <summary>
-        /// Get all database names
+        /// Get all database names from master
         /// </summary>
         public static string GetDatabaseNames =>
             """
@@ -92,7 +92,7 @@
             """;
 
         /// <summary>
-        /// Get all computed columns in a database
+        /// Get all computed columns in a database using a valid connection object
         /// </summary>
         public static string ComputedColumnDefinitions =>
             """
@@ -110,7 +110,7 @@
             """;
 
         /// <summary>
-        /// Determine if table exists in a data
+        /// Determine if table exists in a data using a table name as a parameter
         /// </summary>
         public static string TableExists =>
             """
@@ -126,7 +126,7 @@
             """;
 
         /// <summary>
-        /// Get names of user stored procedures
+        /// Get names of user stored procedures that start with usp or usp_
         /// </summary>
         public static string GetUserStoredProcedureNames =>
             """
@@ -154,7 +154,9 @@
             """;
 
         /// <summary>
-        /// Determine if table exists in a data
+        /// Get details for database tables
+        /// Table name, constraint name, primary key column name, foreign table, foreign key column
+        /// update rule delete rule 
         /// </summary>
         public static string TableConstraintsForDatabase =>
             """

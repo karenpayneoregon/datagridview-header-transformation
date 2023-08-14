@@ -2,7 +2,7 @@
 namespace SqlServerLibrary.Models;
 
 /// <summary>
-/// Container for use in <see cref="Classes.ColumnOperations"/>
+/// Container for use in <see cref="Classes.ColumnService"/>
 /// </summary>
 public class ColumnDescriptions
 {

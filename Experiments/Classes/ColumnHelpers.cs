@@ -1,45 +1,28 @@
-﻿using Experiments.Interfaces;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using SqlServerLibrary.Classes;
-using SqlServerLibrary.Models;
+﻿using SqlServerLibrary.Models;
 
 
 namespace Experiments.Classes;
 
 /// <summary>
 /// Example for obtaining column descriptions from SQL-Server tables which are defined in design pane of a table in SSMS (SQL-Server Management Studio)
+/// ForBooks and ForContacts could also be generic, one method
 /// </summary>
-public class ColumnInformation : IColumnInformation
+public class ColumnHelpers
 {
-    private readonly ConnectionStrings _options;
-    private readonly ILogger<ColumnInformation> _logger;
-    public ColumnInformation(IOptions<ConnectionStrings> options, ILogger<ColumnInformation> logger)
-    {
-        _options = options?.Value;
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        
-        var test = GeneralUtilities.DataSourceFromConnectionString(_options!.BooksConnection);
-    }
 
-
-    public void ForBooks()
+    public static void ForBooks(List<ColumnDescriptions> results)
     {
         ConsoleHelpers.PrintSampleName();
-
-        List<ColumnDescriptions> columns = ColumnOperations.ColumnDetails(_options.BooksConnection, "Books");
-        DisplayColumns(columns);
+        DisplayColumns(results);
     }
 
-    public void Contacts()
+    public static void ForContacts(List<ColumnDescriptions> results)
     {
         ConsoleHelpers.PrintSampleName();
-
-        List<SqlServerLibrary.Models.ColumnDescriptions> columns = ColumnOperations.ColumnDetails(_options.NorthWindConnection, "Contacts");
-        DisplayColumns(columns);
+        DisplayColumns(results);
     }
 
-    private static void DisplayColumns(List<SqlServerLibrary.Models.ColumnDescriptions> columns)
+    private static void DisplayColumns(List<ColumnDescriptions> columns)
     {
         var table = CreateTable();
         foreach (var column in columns)
@@ -50,10 +33,10 @@ public class ColumnInformation : IColumnInformation
         AnsiConsole.Write(table);
     }
 
-    public void GetComputedColumns()
+    public static void GetComputedColumns(List<ComputedColumns> results)
     {
         ConsoleHelpers.PrintSampleName();
-        List<ComputedColumns> results = ColumnOperations.GetComputedColumnsList(_options.ComputedConnection);
+
         if (results != null)
         {
             foreach (var column in results)
@@ -68,12 +51,12 @@ public class ColumnInformation : IColumnInformation
         }
     }
 
-    public void GetDateTimeInformation()
+    public static void GetDateTimeInformation(List<DateTimeContainer> results)
     {
         Console.WriteLine();
 
         ConsoleHelpers.PrintSampleName();
-        List<DateTimeContainer> results = ColumnOperations.GetDateTimeColumns(_options.NorthWindConnection);
+
 
         foreach (var container in results)
         {

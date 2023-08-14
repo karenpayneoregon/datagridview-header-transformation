@@ -1,9 +1,9 @@
-﻿namespace Experiments.Interfaces;
+﻿namespace SqlServerLibrary.Interfaces;
 
 public interface IConstraintInformation
 {
     /// <summary>
     /// Delete tables with cascading delete rule
     /// </summary>
-    void GetTablesWithDeleteRuleForNorthWindDatabase();
+    public void GetTablesWithDeleteRuleForNorthWindDatabase();
 }

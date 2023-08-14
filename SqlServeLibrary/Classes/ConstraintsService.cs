@@ -1,17 +1,20 @@
 ﻿using Microsoft.Data.SqlClient;
+using SqlServerLibrary.Interfaces;
 using SqlServerLibrary.Models;
 
 namespace SqlServerLibrary.Classes;
-public class ConstraintsOperations
+
+public class ConstraintsService : IConstraintsService
 {
     /// <summary>
     /// Get table constraints for a database
     /// </summary>
-    /// <param name="connectionString"></param>
     /// <returns></returns>
-    public static List<TableConstraints> GetAll(string connectionString)
+    public List<TableConstraints> GetAll(string connectionString)
     {
+
         List<TableConstraints> list = new();
+
         using var cn = new SqlConnection(connectionString);
         var cmd = new SqlCommand { Connection = cn, CommandText = SqlStatements.TableConstraintsForDatabase };
 

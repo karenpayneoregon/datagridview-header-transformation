@@ -3,7 +3,7 @@
 namespace SqlServerLibrary.Models;
 
 /// <summary>
-/// Represents a row from <see cref="ConstraintsOperations.GetAll"/>
+/// Represents a row from <see cref="ConstraintsService.GetAll"/>
 /// </summary>
 public class TableConstraints
 {

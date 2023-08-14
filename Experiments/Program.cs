@@ -1,6 +1,9 @@
 ﻿using Experiments.Classes;
 using Microsoft.Extensions.DependencyInjection;
+using SqlServerLibrary.Classes;
+using SqlServerLibrary.Models;
 using static Experiments.Classes.SpectreConsoleHelpers;
+using static Experiments.Classes.Utilities;
 
 namespace Experiments;
 
@@ -8,19 +11,34 @@ internal partial class Program
 {
     static async Task Main(string[] args)
     {
-        var services = Utilities.ConfigureServices();
+        var services = ConfigureServices();
         await using var serviceProvider = services.BuildServiceProvider();
 
         AnsiConsole.MarkupLine("[cyan]Table descriptions from two different databases[/]");
 
-        serviceProvider.GetService<ColumnInformation>().ForBooks();
-        serviceProvider.GetService<ColumnInformation>().Contacts();
+        //ColumnInformation columnInformation = serviceProvider.GetService<ColumnInformation>();
+        ColumnsService columnsService = serviceProvider.GetService<ColumnsService>();
+
+        List<ColumnDescriptions> booksList = columnsService.ForBooks(BooksConnection);
+        ColumnHelpers.ForBooks(booksList);
+
+        List<ColumnDescriptions> contactsList = columnsService.Contacts(NorthWindConnectionString);
+        ColumnHelpers.ForContacts(contactsList);
 
         AnsiConsole.MarkupLine("[cyan]Misc helpers[/]");
 
-        serviceProvider.GetService<ColumnInformation>().GetComputedColumns();
-        serviceProvider.GetService<ColumnInformation>().GetDateTimeInformation();
-        serviceProvider.GetService<ConstraintInformation>().GetTablesWithDeleteRuleForNorthWindDatabase();
+
+        List<ComputedColumns> computedColumnsList = columnsService.GetComputedColumnsList(ComputedConnection);
+        ColumnHelpers.GetComputedColumns(computedColumnsList);
+
+        List<DateTimeContainer> dateTimeColumns = columnsService.GetDateTimeColumns(Utilities.NorthWindConnectionString);
+        ColumnHelpers.GetDateTimeInformation(dateTimeColumns);
+
+
+        List<TableConstraints>  tableConstraintsList = serviceProvider.GetService<ConstraintsService>()
+            .GetAll(NorthWindConnectionString);
+
+        ConstraintHelpers.GetTablesWithDeleteRuleForNorthWindDatabase(tableConstraintsList);
 
         ExitPrompt();
     }
