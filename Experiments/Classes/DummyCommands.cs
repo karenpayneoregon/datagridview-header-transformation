@@ -36,6 +36,18 @@ internal class DummyCommands
         cmd.Parameters.Add("@PhoneType", SqlDbType.Int).Value = 3;
         cmd.Parameters.Add("@ContactType", SqlDbType.Int).Value = 12;
         cmd.CommandText = SqlStatements.GetCustomerForExamination;
+        cn.Open();
+        var reader = cmd.ExecuteReader();
+        if (reader.HasRows)
+        {
+            // with current parameter values we land here
+        }
+        else
+        {
+            // when no results we land here, log it.
+        }
+
+        // for this demo we log no matter if there are rows or not.
         Log.Information(cmd.ActualCommandText());
 
     }
