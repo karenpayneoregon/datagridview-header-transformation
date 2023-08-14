@@ -40,6 +40,8 @@ internal partial class Program
 
         ConstraintHelpers.GetTablesWithDeleteRuleForNorthWindDatabase(tableConstraintsList);
 
+        DummyCommands.ShowCommandParameters();
+
         ExitPrompt();
     }
 }

@@ -16,8 +16,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlServerLibrary", "SqlServ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Experiments", "Experiments\Experiments.csproj", "{2C1A78AE-557B-4C12-B19A-1E52454CB18A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbPeekQueryLibrary", "DbLibrary\DbPeekQueryLibrary.csproj", "{2673F58A-3D0E-4979-9C0F-567B84EF1459}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClassProjects", "ClassProjects", "{BF19E489-808B-431B-8341-7D8C5BD62956}"
 EndProject
 Global
@@ -38,17 +36,12 @@ Global
 		{2C1A78AE-557B-4C12-B19A-1E52454CB18A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C1A78AE-557B-4C12-B19A-1E52454CB18A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C1A78AE-557B-4C12-B19A-1E52454CB18A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2673F58A-3D0E-4979-9C0F-567B84EF1459}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2673F58A-3D0E-4979-9C0F-567B84EF1459}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2673F58A-3D0E-4979-9C0F-567B84EF1459}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2673F58A-3D0E-4979-9C0F-567B84EF1459}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{982D97D5-445D-44DC-913A-0C21C56B6405} = {BF19E489-808B-431B-8341-7D8C5BD62956}
-		{2673F58A-3D0E-4979-9C0F-567B84EF1459} = {BF19E489-808B-431B-8341-7D8C5BD62956}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F4990E40-4BC1-4767-B4B4-3807C52E009D}

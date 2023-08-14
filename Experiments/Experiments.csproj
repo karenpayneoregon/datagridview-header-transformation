@@ -22,6 +22,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="ConsoleHelperLibrary" Version="1.0.0" />
+		<PackageReference Include="DbPeekQueryLibrary" Version="1.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -37,6 +38,8 @@
 		<PackageReference Include="Serilog.Settings.Configuration" Version="7.0.0" />
 		<PackageReference Include="Serilog.Sinks.SpectreConsole" Version="0.3.3" />
 		<PackageReference Include="SeriLogThemesLibrary" Version="1.0.0.1" />
+		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+		<PackageReference Include="Serilog.Extensions.Logging.File" Version="3.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

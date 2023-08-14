@@ -5,6 +5,7 @@ using Serilog.Events;
 using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
 using SqlServerLibrary.Classes;
+using static System.DateTime;
 
 
 namespace Experiments.Classes;
@@ -49,6 +50,7 @@ public class Utilities
 
         var services = new ServiceCollection();
         ConfigureService(services);
+        SeriLogDevelopmentSetup();
 
         return services;
 
@@ -60,10 +62,11 @@ public class Utilities
     public static void SeriLogDevelopmentSetup()
     {
         Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Information()
-            .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-            .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information)
-            .WriteTo.Console(theme: AnsiConsoleTheme.Literate)
+            .MinimumLevel.Verbose()
+
+            .WriteTo.File(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "LogFiles", $"{Now.Year}-{Now.Month}-{Now.Day}", "Log.txt"),
+                rollingInterval: RollingInterval.Infinite,
+                outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level}] {Message}{NewLine}{Exception}")
             .CreateLogger();
 
     }
