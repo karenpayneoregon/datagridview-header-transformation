@@ -35,7 +35,7 @@ public static class SqlClientParamBuilder
     public static void WhereInParameters<T>(this SqlCommand cmd, string commandText, string prefix, IEnumerable<T> parameters)
     {
         cmd.CommandText = BuildWhereInCommandText(commandText, prefix, parameters);
-        string[] parameterValues = parameters.Select((paramText) => paramText.ToString()).ToArray();
+        string[] parameterValues = parameters.Select( (paramText) => paramText.ToString()).ToArray();
         string[] parameterNames = parameterValues.Select( (_, paramNumber) => $"@{prefix}{paramNumber}").ToArray();
 
         for (int index = 0; index < parameterNames.Length; index++)
