@@ -8,6 +8,7 @@ namespace SqlServerLibrary.Extensions;
 /// </summary>
 public static class SqlClientParamBuilder
 {
+
     /// <summary>
     /// Creates parameters for WHERE IN clause
     /// </summary>
@@ -19,10 +20,10 @@ public static class SqlClientParamBuilder
     private static string BuildWhereInCommandText<T>(string commandText, string prefix, IEnumerable<T> parameters)
     {
         string[] parameterNames = parameters.Select((paramText, paramNumber) => $"@{prefix}{paramNumber}").ToArray();
-        var inClause = string.Join(",", parameterNames);
-        var whereInClause = string.Format(commandText.Trim(), inClause);
+        string concatenatedNames = string.Join(",", parameterNames);
+        string whereStatement = string.Format(commandText.Trim(), concatenatedNames);
 
-        return whereInClause;
+        return whereStatement;
     }
 
     /// <summary>
