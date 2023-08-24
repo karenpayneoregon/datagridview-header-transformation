@@ -1,9 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Serilog.Events;
 using Serilog;
-using Serilog.Sinks.SystemConsole.Themes;
 using SqlServerLibrary.Classes;
 using static System.DateTime;
 
@@ -33,6 +31,10 @@ public class Utilities
             .AddEnvironmentVariables()
             .Build();
 
+    /// <summary>
+    /// Setup services for this app
+    /// </summary>
+    /// <returns></returns>
     public static ServiceCollection ConfigureServices()
     {
         static void ConfigureService(IServiceCollection services)

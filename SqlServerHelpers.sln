@@ -18,6 +18,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Experiments", "Experiments\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClassProjects", "ClassProjects", "{BF19E489-808B-431B-8341-7D8C5BD62956}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows Forms projects", "Windows Forms projects", "{DC50197B-EDB5-4D5A-AE4F-AF465B3A124E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Console projects", "Console projects", "{6AF3DE93-BDE3-4137-8604-BA3928D3CD64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhereInParametersApp", "WhereInParametersApp\WhereInParametersApp.csproj", "{05E5B881-3FC4-4EE1-8C2E-B9694BD05CDD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,12 +42,19 @@ Global
 		{2C1A78AE-557B-4C12-B19A-1E52454CB18A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C1A78AE-557B-4C12-B19A-1E52454CB18A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C1A78AE-557B-4C12-B19A-1E52454CB18A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05E5B881-3FC4-4EE1-8C2E-B9694BD05CDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05E5B881-3FC4-4EE1-8C2E-B9694BD05CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05E5B881-3FC4-4EE1-8C2E-B9694BD05CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05E5B881-3FC4-4EE1-8C2E-B9694BD05CDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{580F62CD-8729-4CE7-8F22-F648BBC58E5C} = {DC50197B-EDB5-4D5A-AE4F-AF465B3A124E}
 		{982D97D5-445D-44DC-913A-0C21C56B6405} = {BF19E489-808B-431B-8341-7D8C5BD62956}
+		{2C1A78AE-557B-4C12-B19A-1E52454CB18A} = {6AF3DE93-BDE3-4137-8604-BA3928D3CD64}
+		{05E5B881-3FC4-4EE1-8C2E-B9694BD05CDD} = {6AF3DE93-BDE3-4137-8604-BA3928D3CD64}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F4990E40-4BC1-4767-B4B4-3807C52E009D}

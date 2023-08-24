@@ -135,6 +135,27 @@
             WHERE [name] LIKE 'usp%' OR [name] LIKE 'usp_%';
             """;
 
+        public static string WhereInForCustomers =>
+            """
+            SELECT C.CustomerIdentifier,
+                   C.CompanyName,
+                   C.Street,
+                   C.City,
+                   C.CountryIdentifier,
+                   CO.Name AS CountryName,
+                   C.Phone,
+                   C.ContactId,
+                   CT.FirstName,
+                   CT.LastName
+            FROM dbo.Customers AS C
+                INNER JOIN dbo.Contacts AS CT
+                    ON C.ContactId = CT.ContactId
+                INNER JOIN dbo.Countries AS CO
+                    ON C.CountryIdentifier = CO.CountryIdentifier
+            WHERE C.CustomerIdentifier IN ({0})
+            ORDER BY C.CompanyName
+            """;
+
         /// <summary>
         /// Get all date time columns for tables in database
         /// </summary>
@@ -155,8 +176,7 @@
 
         /// <summary>
         /// Get details for database tables
-        /// Table name, constraint name, primary key column name, foreign table, foreign key column
-        /// update rule delete rule 
+        /// Table name, constraint name, primary key column name, foreign table, foreign key column update rule delete rule 
         /// </summary>
         public static string TableConstraintsForDatabase =>
             """
@@ -193,7 +213,10 @@
                 FK.TABLE_NAME
             """;
 
-        public static string GetCustomerForExamination =>
+        /// <summary>
+        /// Select for Customers which requires parameters for CustomerIdentifier, PhoneType and ContactType
+        /// </summary>
+        public static string GetCustomers =>
             """
             SELECT Cust.CustomerIdentifier,
                    Cust.CompanyName,

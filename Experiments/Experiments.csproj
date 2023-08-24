@@ -17,10 +17,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ConfigurationLibrary" Version="1.0.4" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="ConsoleHelperLibrary" Version="1.0.0" />
 		<PackageReference Include="DbPeekQueryLibrary" Version="1.0.1" />
 	</ItemGroup>

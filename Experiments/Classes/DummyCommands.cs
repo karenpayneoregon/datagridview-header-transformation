@@ -35,7 +35,24 @@ internal class DummyCommands
         cmd.Parameters.Add("@CustomerIdentifier", SqlDbType.Int).Value = 4;
         cmd.Parameters.Add("@PhoneType", SqlDbType.Int).Value = 3;
         cmd.Parameters.Add("@ContactType", SqlDbType.Int).Value = 12;
-        cmd.CommandText = SqlStatements.GetCustomerForExamination;
+
+        cmd.CommandText = SqlStatements.GetCustomers;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         cn.Open();
         var reader = cmd.ExecuteReader();
         if (reader.HasRows)

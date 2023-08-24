@@ -30,14 +30,14 @@ internal partial class Program
         List<ComputedColumns> computedColumnsList = columnsService.GetComputedColumnsList(ComputedConnection);
         ColumnHelpers.GetComputedColumns(computedColumnsList);
 
-        List<DateTimeContainer> dateTimeColumns = columnsService.GetDateTimeColumns(Utilities.NorthWindConnectionString);
+        List<DateTimeContainer> dateTimeColumns = columnsService.GetDateTimeColumns(NorthWindConnectionString);
         ColumnHelpers.GetDateTimeInformation(dateTimeColumns);
 
 
         List<TableConstraints>  tableConstraintsList = serviceProvider.GetService<ConstraintsService>()
             .GetAll(NorthWindConnectionString);
 
-        ConstraintHelpers.GetTablesWithDeleteRuleForNorthWindDatabase(tableConstraintsList);
+        ConstraintHelpers.GetTablesWithDeleteRules(tableConstraintsList);
 
         DummyCommands.ShowCommandParameters();
         AnsiConsole.MarkupLine("[cyan]Query logged with [/][yellow]SeriLog[/]");

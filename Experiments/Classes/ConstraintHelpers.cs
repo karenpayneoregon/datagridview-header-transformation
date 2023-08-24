@@ -5,9 +5,9 @@ public class ConstraintHelpers
 {
 
     /// <summary>
-    /// Delete tables with cascading delete rule
+    /// Delete tables with cascading delete rule for NorthWind database
     /// </summary>
-    public static void GetTablesWithDeleteRuleForNorthWindDatabase(List<TableConstraints> list)
+    public static void GetTablesWithDeleteRules(List<TableConstraints> list)
     {
         ConsoleHelpers.PrintSampleName();
 
