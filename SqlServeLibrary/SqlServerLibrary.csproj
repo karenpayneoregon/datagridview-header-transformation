@@ -7,6 +7,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Stash\readme.md" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Stash\readme.md" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
 	</ItemGroup>
 

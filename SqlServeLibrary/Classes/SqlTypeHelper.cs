@@ -4,11 +4,11 @@ namespace SqlServerLibrary.Classes;
 
 public static class SqlTypeHelper
 {
-    private static readonly Dictionary<Type, SqlDbType> sqlTypeMap;
+    private static readonly Dictionary<Type, SqlDbType> SqlTypeMap;
 
     static SqlTypeHelper()
     {
-        sqlTypeMap = new Dictionary<Type, SqlDbType>
+        SqlTypeMap = new Dictionary<Type, SqlDbType>
         {
             [typeof(string)] = SqlDbType.NVarChar,
             [typeof(char[])] = SqlDbType.NVarChar,
@@ -37,7 +37,7 @@ public static class SqlTypeHelper
 
         type = Nullable.GetUnderlyingType(type) ?? type;
 
-        if (sqlTypeMap.TryGetValue(type, out var databaseType))
+        if (SqlTypeMap.TryGetValue(type, out var databaseType))
         {
             return databaseType;
         }

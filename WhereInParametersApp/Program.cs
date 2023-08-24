@@ -17,16 +17,14 @@ internal partial class Program
             Database=NorthWind2022;
             Trusted_Connection=True
             """;
-        List<int> list = new List<int>() { 3, 34, 24 };
+
+        List<int> list = new() { 3, 34, 24 };
         string preFix = "id";
 
-        using var cn = new SqlConnection(connectionString);
-        using var cmd = new SqlCommand { Connection = cn };
+        using SqlConnection cn = new(connectionString);
+        using SqlCommand cmd = new(null, cn);
 
-        cmd.CommandText = SqlWhereInParamBuilder
-            .BuildInClause(SqlStatements.WhereInForCustomers, preFix, list);
-
-        cmd.AddParamsToCommand(preFix, list);
+        cmd.WhereInParameters(SqlStatements.WhereInForCustomers, preFix, list);
 
         Console.WriteLine(cmd.CommandText);
         Console.WriteLine();
