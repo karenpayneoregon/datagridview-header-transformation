@@ -20,10 +20,7 @@ public static class SqlClientParamBuilder
     private static string BuildWhereInCommandText<T>(string commandText, string prefix, IEnumerable<T> parameters)
     {
         string[] parameterNames = parameters.Select((paramText, paramNumber) => $"@{prefix}{paramNumber}").ToArray();
-        string concatenatedNames = string.Join(",", parameterNames);
-        string whereStatement = string.Format(commandText.Trim(), concatenatedNames);
-
-        return whereStatement;
+        return string.Format(commandText.Trim(), string.Join(",", parameterNames));
     }
 
     /// <summary>
@@ -39,7 +36,7 @@ public static class SqlClientParamBuilder
     {
         cmd.CommandText = BuildWhereInCommandText(commandText, prefix, parameters);
         string[] parameterValues = parameters.Select((paramText) => paramText.ToString()).ToArray();
-        string[] parameterNames = parameterValues.Select((paramText, paramNumber) => $"@{prefix}{paramNumber}").ToArray();
+        string[] parameterNames = parameterValues.Select( (_, paramNumber) => $"@{prefix}{paramNumber}").ToArray();
 
         for (int index = 0; index < parameterNames.Length; index++)
         {
@@ -51,5 +48,6 @@ public static class SqlClientParamBuilder
             });
         }
     }
+
 }
 
