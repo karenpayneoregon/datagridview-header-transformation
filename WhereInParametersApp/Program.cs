@@ -11,10 +11,16 @@ internal partial class Program
 
     static void Main(string[] args)
     {
+        string connectionString = 
+            """
+            Server=(localdb)\MSSQLLocalDB;
+            Database=NorthWind2022;
+            Trusted_Connection=True
+            """;
         List<int> list = new List<int>() { 3, 34, 24 };
         string preFix = "id";
 
-        using var cn = new SqlConnection("Server=(localdb)\\MSSQLLocalDB;Database=NorthWind2022;Trusted_Connection=True");
+        using var cn = new SqlConnection(connectionString);
         using var cmd = new SqlCommand { Connection = cn };
 
         cmd.CommandText = SqlWhereInParamBuilder
