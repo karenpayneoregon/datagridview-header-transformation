@@ -1,8 +1,12 @@
-﻿using ConfigurationLibrary.Classes;
+﻿using System.Data;
+using System.Diagnostics;
+using System.Reflection;
+using ConfigurationLibrary.Classes;
 using DbPeekQueryLibrary.LanguageExtensions;
 using Microsoft.Data.SqlClient;
 using SqlServerLibrary.Classes;
 using SqlServerLibrary.Extensions;
+using WhereInParametersApp.Models;
 
 namespace WhereInParametersApp;
 
@@ -18,29 +22,20 @@ internal partial class Program
             Trusted_Connection=True
             """;
 
-        List<int> list = new() { 3, 34, 24 };
+        List<int> identifiers = new() { 3, 34, 24 };
         string preFix = "id";
 
         using SqlConnection cn = new(connectionString);
         using SqlCommand cmd = new(null, cn);
 
-        cmd.WhereInParameters(SqlStatements.WhereInForCustomers, preFix, list);
-
-        Console.WriteLine(cmd.CommandText);
-        Console.WriteLine();
-        Console.WriteLine(cmd.ActualCommandText());
-        Console.WriteLine();
-
+        cmd.WhereInParameters(SqlStatements.WhereInForCustomers, preFix, identifiers);
         cn.Open();
-        var reader = cmd.ExecuteReader();
+        DataTable dt = new();
+        dt.Load(cmd.ExecuteReader());
+        List<Customer> customers = dt.ToList<Customer>();
 
-        while (reader.Read())
-        {
-            Console.WriteLine(reader.GetString(1));
-        }
+        customers.ForEach(Console.WriteLine);
 
-        Console.WriteLine("Done");
-        
         Console.ReadLine();
     }
 }
