@@ -7,9 +7,9 @@ public record Person
     public Person() { }
 
     [SetsRequiredMembers]
-    public Person(string fName, string lName, string userName)
+    public Person(string fName, string lName, string uName)
         => (First, Last, UserName)
-            = (fName, lName, userName);
+            = (fName, lName, uName);
 
     public required string First { get; init; }
     public required string Last { get; init; }
