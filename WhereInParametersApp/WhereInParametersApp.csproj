@@ -33,14 +33,23 @@
 		<PackageReference Include="Spectre.Console" Version="0.46.0" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\SqlServeLibrary\SqlServerLibrary.csproj" />
-	</ItemGroup>
+
 
 	<ItemGroup>
 	  <None Update="appsettings.json">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.10" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.10" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.10" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\EntityFrameworkLibrary\EntityFrameworkLibrary.csproj" />
+	  <ProjectReference Include="..\SqlServeLibrary\SqlServerLibrary.csproj" />
 	</ItemGroup>
 
 </Project>

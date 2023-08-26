@@ -22,7 +22,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows Forms projects", "W
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Console projects", "Console projects", "{6AF3DE93-BDE3-4137-8604-BA3928D3CD64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhereInParametersApp", "WhereInParametersApp\WhereInParametersApp.csproj", "{05E5B881-3FC4-4EE1-8C2E-B9694BD05CDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhereInParametersApp", "WhereInParametersApp\WhereInParametersApp.csproj", "{05E5B881-3FC4-4EE1-8C2E-B9694BD05CDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkLibrary", "EntityFrameworkLibrary\EntityFrameworkLibrary.csproj", "{E2B9BD58-4928-4DCE-AF8B-B3611787534E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +48,10 @@ Global
 		{05E5B881-3FC4-4EE1-8C2E-B9694BD05CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05E5B881-3FC4-4EE1-8C2E-B9694BD05CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05E5B881-3FC4-4EE1-8C2E-B9694BD05CDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2B9BD58-4928-4DCE-AF8B-B3611787534E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2B9BD58-4928-4DCE-AF8B-B3611787534E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2B9BD58-4928-4DCE-AF8B-B3611787534E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2B9BD58-4928-4DCE-AF8B-B3611787534E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{982D97D5-445D-44DC-913A-0C21C56B6405} = {BF19E489-808B-431B-8341-7D8C5BD62956}
 		{2C1A78AE-557B-4C12-B19A-1E52454CB18A} = {6AF3DE93-BDE3-4137-8604-BA3928D3CD64}
 		{05E5B881-3FC4-4EE1-8C2E-B9694BD05CDD} = {6AF3DE93-BDE3-4137-8604-BA3928D3CD64}
+		{E2B9BD58-4928-4DCE-AF8B-B3611787534E} = {BF19E489-808B-431B-8341-7D8C5BD62956}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F4990E40-4BC1-4767-B4B4-3807C52E009D}

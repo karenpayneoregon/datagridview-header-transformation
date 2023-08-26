@@ -135,7 +135,7 @@
             WHERE [name] LIKE 'usp%' OR [name] LIKE 'usp_%';
             """;
 
-        public static string WhereInForCustomers =>
+        public static string WhereInCustomers =>
             """
             SELECT C.CustomerIdentifier,
                    C.CompanyName,

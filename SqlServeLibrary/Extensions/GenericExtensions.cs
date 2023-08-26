@@ -10,6 +10,7 @@ public static class GenericExtensions
     /// <typeparam name="TSource">Type to return from DataTable</typeparam>
     /// <param name="table">DataTable</param>
     /// <returns>List of <see cref="TSource"/>Expected type list</returns>
+    /// <remarks>Would avoid using this for a large table</remarks>
     public static List<TSource> ToList<TSource>(this DataTable table) where TSource : new()
     {
         List<TSource> list = new();
@@ -41,4 +42,5 @@ public static class GenericExtensions
 
         return list;
     }
+
 }

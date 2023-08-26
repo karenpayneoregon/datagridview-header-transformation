@@ -1,41 +1,59 @@
 ﻿using System.Data;
-using System.Diagnostics;
-using System.Reflection;
-using ConfigurationLibrary.Classes;
-using DbPeekQueryLibrary.LanguageExtensions;
+using EntityFrameworkLibrary;
 using Microsoft.Data.SqlClient;
 using SqlServerLibrary.Classes;
 using SqlServerLibrary.Extensions;
+using WhereInParametersApp.Data;
 using WhereInParametersApp.Models;
+
 
 namespace WhereInParametersApp;
 
 internal partial class Program
 {
-
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
-        string connectionString = 
-            """
-            Server=(localdb)\MSSQLLocalDB;
-            Database=NorthWind2022;
-            Trusted_Connection=True
-            """;
+        await EntitySample();
+        Console.WriteLine();
+        await DataProviderSample();
+        Demo();
+        Console.ReadLine();
+    }
+    private static async Task EntitySample()
+    {
+        List<int> identifiers = new() { 3, 34, 24 };
+        await using var context = new Context();
 
+        var customers = await context.WhereInAsync<Customers>(identifiers.ToObjectArray());
+        var customers1 = context
+            .Customers
+            .Where(c => identifiers.Contains(c.CustomerIdentifier))
+            .ToList();
+
+        customers.ToList().ForEach(Console.WriteLine);
+    }
+    private static async Task DataProviderSample()
+    {
         List<int> identifiers = new() { 3, 34, 24 };
         string preFix = "id";
 
-        using SqlConnection cn = new(connectionString);
-        using SqlCommand cmd = new(null, cn);
+        await using SqlConnection cn = new(_connectionString);
+        await using SqlCommand cmd = new(null, cn);
 
-        cmd.WhereInParameters(SqlStatements.WhereInForCustomers, preFix, identifiers);
-        cn.Open();
+        cmd.WhereInConfiguration(SqlStatements.WhereInCustomers, preFix, identifiers);
+        await cn.OpenAsync();
         DataTable dt = new();
-        dt.Load(cmd.ExecuteReader());
-        List<Customer> customers = dt.ToList<Customer>();
+        dt.Load(await cmd.ExecuteReaderAsync());
+        dt.ToList<Customer>().ForEach(Console.WriteLine);
+    }
+    public void ExampleMethod(int required, string optionalstr)
+    {
 
-        customers.ForEach(Console.WriteLine);
+    }
 
-        Console.ReadLine();
+    private static void Demo()
+    {
+        Person person = new("Karen","Payne","PayneKaren");
+        Console.WriteLine(person);
     }
 }
