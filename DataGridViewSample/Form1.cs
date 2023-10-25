@@ -12,9 +12,9 @@ namespace DataGridViewSample
             Shown += OnShown;
         }
 
-        private void OnShown(object sender, EventArgs e)
+        private async void OnShown(object sender, EventArgs e)
         {
-            _bindingSource.DataSource = DataOperations.Books();
+            _bindingSource.DataSource = await DataOperations.Books1();
             dataGridView1.DataSource = _bindingSource;
             dataGridView1.ExpandColumns();
         }

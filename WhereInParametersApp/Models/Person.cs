@@ -7,13 +7,13 @@ public record Person
     public Person() { }
 
     [SetsRequiredMembers]
-    public Person(string fName, string lName, string uName)
-        => (First, Last, UserName)
-            = (fName, lName, uName);
+    public Person(string firstName, string lastName, string userName)
+        => (FirstName, LastName, UserName)
+            = (firstName, lastName, userName);
 
-    public required string First { get; init; }
-    public required string Last { get; init; }
+    public required string FirstName { get; init; }
+    public required string LastName { get; init; }
     public required string UserName { get; init; }
-    public override string ToString() => $"{First} {Last}";
+    public override string ToString() => $"{FirstName} {LastName}";
 
 }
