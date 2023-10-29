@@ -6,9 +6,8 @@ public static class SqlTypeHelper
 {
     private static readonly Dictionary<Type, SqlDbType> SqlTypeMap;
 
-    static SqlTypeHelper()
-    {
-        SqlTypeMap = new Dictionary<Type, SqlDbType>
+    static SqlTypeHelper() =>
+        SqlTypeMap = new()
         {
             [typeof(string)] = SqlDbType.NVarChar,
             [typeof(char[])] = SqlDbType.NVarChar,
@@ -25,7 +24,6 @@ public static class SqlTypeHelper
             [typeof(double)] = SqlDbType.Float,
             [typeof(TimeSpan)] = SqlDbType.Time
         };
-    }
 
     /// <summary>
     /// Get SqlDbType for givenType

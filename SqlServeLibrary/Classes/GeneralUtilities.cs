@@ -68,4 +68,7 @@ public class GeneralUtilities
     /// <returns>DataSource from <param name="connectionString">connectionString</param></returns>
     public static string DataSourceFromConnectionString(string connectionString)
         => new SqlConnectionStringBuilder(connectionString).DataSource;
+
+    public static SqlConnectionEncryptOption EncryptSetting(string connectionString)
+        => new SqlConnectionStringBuilder(connectionString).Encrypt;
 }

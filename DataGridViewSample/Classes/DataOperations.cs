@@ -5,45 +5,58 @@ using DataGridViewSample.Models;
 
 namespace DataGridViewSample.Classes;
 
-        internal class DataOperations
-        {
-            public static string SelectStatement =>
-                """
-                    SELECT Id,Title,Price,CategoryId 
-                    FROM dbo.Books;
-                    """;
-            public static string SelectIncludeStatement =>
-                """
-                    SELECT Id,
-                           Title,
-                           Price,
-                           Books.CategoryId,
-                           Description
-                    FROM dbo.Books
-                        INNER JOIN dbo.Categories
-                            ON Books.CategoryId = Categories.CategoryId;
-                    """;
-            public static async Task<DataTable> Books1()
-            {
-                await using var cn = new SqlConnection(ConnectionString());
+internal class DataOperations
+{
 
-                cn.Open();
-                DataTable table = new();
+    public static async Task<DataTable> Books1()
+    {
+        await using var cn = new SqlConnection(ConnectionString());
 
-                table.Load(await cn.ExecuteReaderAsync(SelectStatement));
+        cn.Open();
+        DataTable table = new();
 
-                return table;
-            }
-            public static async Task<IEnumerable<Book>> BooksContainer()
+        table.Load(await cn.ExecuteReaderAsync(SqlStatements.GetBooks));
+
+        return table;
+    }
+    public static async Task<IEnumerable<Book>> BooksContainer()
+    {
+        await using var cn = new SqlConnection(ConnectionString());
+        return await cn.QueryAsync<Book>(SqlStatements.GetBooks);
+    }
+
+    /// <summary>
+    /// Get all books
+    /// </summary>
+    /// <returns>Books with category</returns>
+    public static async Task<IEnumerable<Book>> Books()
+    {
+        await using var cn = new SqlConnection(ConnectionString());
+        IEnumerable<Book> books = await cn.QueryAsync<Book, Categories, Book>(
+            SqlStatements.GetBooksWithCategories,
+            (book, category) =>
             {
-                await using var cn = new SqlConnection(ConnectionString());
-                return await cn.QueryAsync<Book>(SelectStatement);
-            }
-            public static async Task Books()
+                book.Category = category; return book;
+            }, splitOn: nameof(Book.CategoryId));
+
+        return books;
+    }
+
+    /// <summary>
+    /// Get book by identifier with category
+    /// </summary>
+    /// <param name="id">Identifier to locate book with</param>
+    /// <returns>Book</returns>
+    public static async Task<Book> GetBook(int id)
+    {
+        await using var cn = new SqlConnection(ConnectionString());
+        return cn.Query<Book, Categories, Book>(SqlStatements.GetBookWithCategories,
+            (book, category) =>
             {
-                await using var cn = new SqlConnection(ConnectionString());
-                var books = await cn.QueryAsync<Book, Categories, Book>(
-                    SelectIncludeStatement, 
-                    (book, category) => { book.Category = category; return book; }, splitOn: nameof(Book.CategoryId));
-            }
-        }
+                book.Category = category; return book;
+            }, 
+            new { Id = id },
+            splitOn: nameof(Book.CategoryId))
+            .FirstOrDefault();
+    }
+}
