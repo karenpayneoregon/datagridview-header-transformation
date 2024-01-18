@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             button1 = new Button();
             dataGridView1 = new DataGridView();
+            GetCurrentFromTableButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -56,11 +58,25 @@
             dataGridView1.Size = new Size(958, 192);
             dataGridView1.TabIndex = 1;
             // 
+            // GetCurrentFromTableButton
+            // 
+            GetCurrentFromTableButton.Image = (Image)resources.GetObject("GetCurrentFromTableButton.Image");
+            GetCurrentFromTableButton.ImageAlign = ContentAlignment.MiddleLeft;
+            GetCurrentFromTableButton.Location = new Point(224, 209);
+            GetCurrentFromTableButton.Margin = new Padding(3, 4, 3, 4);
+            GetCurrentFromTableButton.Name = "GetCurrentFromTableButton";
+            GetCurrentFromTableButton.Size = new Size(173, 31);
+            GetCurrentFromTableButton.TabIndex = 2;
+            GetCurrentFromTableButton.Text = "Current";
+            GetCurrentFromTableButton.UseVisualStyleBackColor = true;
+            GetCurrentFromTableButton.Click += GetCurrentFromTableButton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(986, 253);
+            Controls.Add(GetCurrentFromTableButton);
             Controls.Add(dataGridView1);
             Controls.Add(button1);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
@@ -76,5 +92,6 @@
 
         private Button button1;
         private DataGridView dataGridView1;
+        private Button GetCurrentFromTableButton;
     }
 }

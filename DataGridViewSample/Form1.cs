@@ -1,4 +1,6 @@
+using System.ComponentModel;
 using DataGridViewSample.Classes;
+using DataGridViewSample.Models;
 using SqlServerLibrary.Classes;
 
 namespace DataGridViewSample
@@ -6,6 +8,7 @@ namespace DataGridViewSample
     public partial class Form1 : Form
     {
         private readonly BindingSource _bindingSource = new();
+        private BindingList<Book> _bindingList = new();
         public Form1()
         {
             InitializeComponent();
@@ -14,9 +17,11 @@ namespace DataGridViewSample
 
         private async void OnShown(object sender, EventArgs e)
         {
-            _bindingSource.DataSource = await DataOperations.Books1();
+            _bindingList = new BindingList<Book>(await DataOperations.BooksContainer());
+            _bindingSource.DataSource = _bindingList;
             dataGridView1.DataSource = _bindingSource;
             dataGridView1.ExpandColumns();
+
         }
 
 
@@ -38,6 +43,15 @@ namespace DataGridViewSample
             {
                 dataGridView1.Columns[column.Name]!.HeaderText = column.Description;
             }
+        }
+
+        private async void GetCurrentFromTableButton_Click(object sender, EventArgs e)
+        {
+            Book book = _bindingList[_bindingSource.Position];
+
+            await DataOperations.GetCategory(book);
+
+            var book1 = await DataOperations.GetCategory(book.Id, book.CategoryId);
         }
     }
 }

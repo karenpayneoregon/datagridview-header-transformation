@@ -38,20 +38,7 @@ internal class DummyCommands
 
         cmd.CommandText = SqlStatements.GetCustomers;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
 
         cn.Open();
         var reader = cmd.ExecuteReader();

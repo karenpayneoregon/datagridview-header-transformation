@@ -19,10 +19,51 @@ internal class DataOperations
 
         return table;
     }
-    public static async Task<IEnumerable<Book>> BooksContainer()
+    public static async Task<List<Book>> BooksContainer()
     {
         await using var cn = new SqlConnection(ConnectionString());
-        return await cn.QueryAsync<Book>(SqlStatements.GetBooks);
+        return (List<Book>)await cn.QueryAsync<Book>(SqlStatements.GetBooks);
+    }
+
+    /// <summary>
+    /// Get category for book
+    /// </summary>
+    /// <param name="book">Existing book</param>
+    /// <remarks>
+    /// For where the frontend does not always need a Book's category.
+    /// </remarks>
+    public static async Task GetCategory(Book book)
+    {
+        await using var cn = new SqlConnection(ConnectionString());
+        SqlMapper.GridReader results = await cn.QueryMultipleAsync(SqlStatements.GetBookWithCategory, 
+            new
+            {
+                book.CategoryId, 
+                book.Id
+            });
+
+        Categories category = await results.ReadFirstAsync<Categories>();
+        Book theBook = await results.ReadFirstAsync<Book>();
+        
+        book.Category = category;
+    }
+
+    public static async Task<Book> GetCategory(int id, int categoryId)
+    {
+
+        await using var cn = new SqlConnection(ConnectionString());
+        SqlMapper.GridReader results = await cn.QueryMultipleAsync(SqlStatements.GetBookWithCategory,
+            new
+            {
+                categoryId,
+                id
+            });
+
+        Categories category = await results.ReadFirstAsync<Categories>();
+        Book book = await results.ReadFirstAsync<Book>();
+        book.Category = category;
+
+        return book;
     }
 
     /// <summary>
@@ -32,8 +73,7 @@ internal class DataOperations
     public static async Task<IEnumerable<Book>> Books()
     {
         await using var cn = new SqlConnection(ConnectionString());
-        IEnumerable<Book> books = await cn.QueryAsync<Book, Categories, Book>(
-            SqlStatements.GetBooksWithCategories,
+        IEnumerable<Book> books = await cn.QueryAsync<Book, Categories, Book>(SqlStatements.GetBooksWithCategories,
             (book, category) =>
             {
                 book.Category = category; return book;
@@ -58,5 +98,33 @@ internal class DataOperations
             new { Id = id },
             splitOn: nameof(Book.CategoryId))
             .FirstOrDefault();
+    }
+
+    public static async Task<Book> GetBookAsync(int id)
+    {
+        await using var cn = new SqlConnection(ConnectionString());
+        IEnumerable<Book> result= await cn.QueryAsync<Book, Categories, Book>(SqlStatements.GetBookWithCategories,
+                (book, category) =>
+                {
+                    book.Category = category; 
+                    return book;
+                },
+                new { Id = id },
+                splitOn: nameof(Book.CategoryId));
+
+        return result.FirstOrDefault();
+    }
+
+    public static async Task<Book> GetBookAsync1(int id)
+    {
+        await using var cn = new SqlConnection(ConnectionString());
+        var result = await cn.QueryAsync<Book, Categories, Book>(SqlStatements.GetBookWithCategories,
+            (book, category) =>
+            {
+                book.Category = category; return book;
+            },
+            new { Id = id },
+            splitOn: nameof(Book.CategoryId));
+        return result.FirstOrDefault();
     }
 }

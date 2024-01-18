@@ -9,6 +9,19 @@ public class SqlStatements
         SELECT Id,Title,Price,CategoryId
         FROM dbo.Books;
         """;
+    public static string GetBookWithCategory =>
+        """
+        SELECT CategoryId
+              ,Description
+          FROM dbo.Categories
+        WHERE  CategoryId = @CategoryId;
+        SELECT Id
+              ,Title
+              ,Price
+              ,CategoryId
+          FROM dbo.Books
+        WHERE Id = @Id;
+        """;
     /// <summary>
     /// Return all books with category
     /// </summary>
