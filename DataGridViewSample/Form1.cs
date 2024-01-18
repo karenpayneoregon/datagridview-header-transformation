@@ -21,6 +21,7 @@ namespace DataGridViewSample
             _bindingSource.DataSource = _bindingList;
             dataGridView1.DataSource = _bindingSource;
             dataGridView1.ExpandColumns();
+            var test = await DataOperations.GetBookAsync2(1);
 
         }
 
